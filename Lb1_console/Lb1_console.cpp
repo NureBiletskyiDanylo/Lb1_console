@@ -6,10 +6,12 @@
 typedef		wchar_t	TCHAR;
 #define	TEXT(a)	L##a
 #define	_tcslen		wcslen
+#define _tcin wcin
 #else
 typedef 	char	   	TCHAR;
 #define 	TEXT(a)	a
 #define	_tcslen		strlen
+#define _tcin cin
 #endif
 
 bool checkIfUnicode(TCHAR* text);
@@ -18,9 +20,8 @@ size_t getLengthInBytes(TCHAR* text);
 int main()
 {
     using namespace std;
-    TCHAR * text;
-    text = new TCHAR[256];
-    cin.getline(text, 256);
+    TCHAR* text = new TCHAR[256]; // Allocate memory for input
+    _tcin.getline(text, 256);
     if (checkIfUnicode(text)) {
         cout << "It is unicode";
     }
@@ -28,7 +29,6 @@ int main()
         cout << "It is ASCII";
     }
 
-    delete[];
     return 0;
 }
 
